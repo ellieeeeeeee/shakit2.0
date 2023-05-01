@@ -3,8 +3,8 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  content: ["./app/**/*.{js,ts,jsx,tsx}"],
-  important: '#__next',
+  content: ["./app/**/*.{js,ts,jsx,tsx,css}"],
+  important: "#__next",
   theme: {
     extend: {},
   },

@@ -1,10 +1,13 @@
 "use client";
+// 브라우저에서 구성 요소를 렌더링하도록 지시
 
 import "./globals.css";
 import { darkTheme, lightTheme } from "./theme/themes";
 
 import { ThemeProvider, CssBaseline, Switch, FormControlLabel } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   let [useDarkTheme, setUseDarkTheme] = useState(false);
@@ -26,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <ThemeProvider theme={theme}>
         <body id="__next">
           <CssBaseline />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
               <Switch
                 checked={useDarkTheme}
@@ -36,8 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }
             label="Dark Mode"
             labelPlacement="start"
-          />
+          /> */}
+          <Header />
           {children}
+          <Footer />
         </body>
       </ThemeProvider>
     </html>
