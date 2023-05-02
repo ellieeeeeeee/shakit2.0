@@ -2,22 +2,14 @@
 // 브라우저에서 구성 요소를 렌더링하도록 지시
 
 import "./globals.css";
-import { darkTheme, lightTheme } from "./theme/themes";
+import { theme } from "./theme/themes";
+import Image from "next/image";
+import { ThemeProvider, CssBaseline, Switch, FormControlLabel, styled, Box, Typography } from "@mui/material";
 
-import { ThemeProvider, CssBaseline, Switch, FormControlLabel } from "@mui/material";
-import { ChangeEvent, useState } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  let [useDarkTheme, setUseDarkTheme] = useState(false);
-  let [theme, setTheme] = useState(useDarkTheme ? darkTheme : lightTheme);
-
-  const changeThemeHandler = (target: ChangeEvent, currentValue: boolean) => {
-    setUseDarkTheme(currentValue);
-    setTheme(currentValue ? darkTheme : lightTheme);
-  };
-
   return (
     <html lang="en">
       <head>
@@ -40,6 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             label="Dark Mode"
             labelPlacement="start"
           /> */}
+          <Banner>
+            <Typography variant="h4">기업 학교 고객이신가요?</Typography>
+            <Typography variant="h4">
+              쉐이킷 B2B 전용몰
+              <Image src="/arrow_pink.svg" alt="arrow" width={9} height={9} />
+            </Typography>
+          </Banner>
           <Header />
           {children}
           <Footer />
@@ -48,3 +47,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+const Banner = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  padding: "14px 0",
+  background: theme.palette.background.paper,
+  h4: {
+    color: "#000",
+  },
+  "h4 + h4": {
+    display: "flex",
+    alignItems: "center",
+    color: theme.palette.primary.main,
+    fontWeight: 700,
+    marginLeft: "8px",
+    img: {
+      marginLeft: "17px",
+    },
+  },
+}));
